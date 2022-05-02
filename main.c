@@ -6,7 +6,7 @@ void start_cooking(){}
 void stop_cooking(){}
 void delay_sec(int t){}
 void delay_ms(int t){}
-enum {A,B,C,D};
+enum {A,B,C,D}; //all buttons
 enum {not_cooking,popcorn,beef,chicken,time_select}; //all states
 
 int state = not_cooking;
