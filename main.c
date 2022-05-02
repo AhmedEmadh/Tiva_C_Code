@@ -1,6 +1,3 @@
-
-
-
 void initialization(){}
 void lcd_print(char *p){}
 void lcd_clear(){}
