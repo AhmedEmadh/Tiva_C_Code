@@ -1,16 +1,23 @@
+//variables and enums
+enum Button{A,B,C,D}; //all buttons
+enum State{not_cooking,popcorn,beef,chicken,time_select}; //all states
+enum Bool{False,True};
+enum State state = not_cooking;
+enum Bool door_closed = False;
+int weight;
+//functions
 void initialization(){}
 void lcd_print(char *p){}
+void lcd_print(int n){}
 void lcd_clear(){}
+int lcd_input(){}
 int pushed_key(){}
 void start_cooking(){}
 void stop_cooking(){}
 void delay_sec(int t){}
 void delay_ms(int t){}
-enum {A,B,C,D}; //all buttons
-enum {not_cooking,popcorn,beef,chicken,time_select}; //all states
 
-int state = not_cooking;
-
+//main function
 void main() {
     //initialization for board
     initialization();
@@ -35,10 +42,28 @@ void main() {
         
         case beef:
             
+            lcd_print("Beef weight?");
+            weight = lcd_input();
+            lcd_clear();
+            lcd_print(weight);
+            delay_sec(2);
+            lcd_clear();
+            start_cooking();
+            delay(30 * weight);//0.5min * weight
+            stop_cooking();
             break;
         
         case chicken:
             
+            lcd_print("chicken weight?");
+            weight = lcd_input();
+            lcd_clear();
+            lcd_print(weight);
+            delay_sec(2);
+            lcd_clear();
+            start_cooking();
+            delay(12 * weight);//0.2min * weight
+            stop_cooking();
             break;
         case time_select:
             
@@ -46,5 +71,5 @@ void main() {
         default:
             break;
         }
-    }
+    }//loop end
 }
