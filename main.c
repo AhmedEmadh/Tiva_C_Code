@@ -1,6 +1,6 @@
 //variables and enums
 enum Button{A,B,C,D}; //all buttons
-enum State{not_cooking,popcorn,beef,chicken,time_select}; //all states
+enum State{not_cooking,popcorn,beef,chicken}; //all states
 enum Bool{False,True};
 enum State state = not_cooking;
 enum Bool door_closed = False;
@@ -64,9 +64,6 @@ void main() {
             start_cooking();
             delay(12 * weight);//0.2min * weight
             stop_cooking();
-            break;
-        case time_select:
-            
             break;
         default:
             break;
