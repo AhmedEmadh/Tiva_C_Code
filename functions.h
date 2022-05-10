@@ -1,0 +1,14 @@
+void initialization();
+void lcd_print(char *p);
+void lcd_print(int n);
+void lcd_print(char *p,int row);
+void lcd_print(int n,int row);
+void lcd_clear();
+int keypad_input();
+int pushed_key();
+void beef_count_down();
+void chicken_count_down();
+void start_cooking();
+void stop_cooking();
+void delay_sec(int t);
+void delay_ms(int t);
