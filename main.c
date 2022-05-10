@@ -1,3 +1,8 @@
+//some usefull macros
+#define set_bit(reg,bit)   reg=reg|(1<<bit)
+#define clr_bit(reg,bit)   reg=(~(1<<bit))&reg
+#define read_bit(reg,bit)   ((reg>>bit)&1)
+#define tog_bit(reg,bit)   (reg=reg^(1<<bit))
 //variables and enums
 enum Button{A,B,C,D}; //all buttons
 enum State{not_cooking,popcorn,beef,chicken}; //all states
