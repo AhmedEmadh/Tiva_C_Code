@@ -1,5 +1,7 @@
+//includes
 #include "functions.h"
-//variables and enums
+#include <stdint.h>
+//variables, enums and definitions
 #define set_bit(reg,bit)   reg=reg|(1<<bit)
 #define clr_bit(reg,bit)   reg=(~(1<<bit))&reg
 #define read_bit(reg,bit)   ((reg>>bit)&1)
@@ -7,25 +9,10 @@
 
 enum Button{A,B,C,D}; //all buttons
 enum State{not_cooking,popcorn,beef,chicken,other,error}; //all states
-enum Bool{False,True};
+enum Bool{False,True};//boolean
 enum State state = not_cooking;
 enum Bool door_closed = False;
 int weight;
-//functions
-void initialization(){}
-void lcd_print_char(char *p){}
-void lcd_print_int(int n){}
-void lcd_print_char_row(char *p,int row){}
-void lcd_print_int_row(int n,int row){}
-void lcd_clear(){}
-int keypad_input(){}
-int pushed_key(){}
-void beef_count_down(){}
-void chicken_count_down(){}
-void start_cooking(){}
-void stop_cooking(){}
-void delay_sec(int t){}
-void delay_ms(int t){}
 char input;
 //main function
 int main() {
@@ -95,3 +82,33 @@ int main() {
         }
     }//loop end
 }
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+//functions
+void initialization(){}
+void lcd_print_char(char *p){}
+void lcd_print_int(int n){}
+void lcd_print_char_row(char *p,int row){}
+void lcd_print_int_row(int n,int row){}
+void lcd_clear(){}
+int keypad_input(){}
+int pushed_key(){}
+void beef_count_down(){}
+void chicken_count_down(){}
+void start_cooking(){}
+void stop_cooking(){}
+void delay_sec(int t){}
+void delay_ms(int t){}
