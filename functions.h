@@ -7,6 +7,7 @@ void lcd_clear();
 int keypad_input();
 int pushed_key();
 void beef_count_down();
+void beef_count_down();
 void chicken_count_down();
 void start_cooking();
 void stop_cooking();
