@@ -1,8 +1,8 @@
 void initialization();
-void lcd_print(char *p);
-void lcd_print(int n);
-void lcd_print(char *p,int row);
-void lcd_print(int n,int row);
+void lcd_print_char(char *p);
+void lcd_print_int(int n);
+void lcd_print_char_row(char *p,int row);
+void lcd_print_int_row(int n,int row);
 void lcd_clear();
 int keypad_input();
 int pushed_key();
