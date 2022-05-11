@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\key\key.h"
+#include "key.h"
 int main(void)
 {
 unsigned char key;
