@@ -1,5 +1,5 @@
-//#include "D:\UV4\tm4c123gh6pm.h" dont include your own path here
-//#include "TM4C123.h" // Device header --------- where is this file???
+#include "tm4c123gh6pm.h" 
+#include "TM4C123.h"
 #define LCD_DATA GPIOB
 #define LCD_CTRL GPIOA
 #define RS 0x20 /* PORTA BIT5 mask */
