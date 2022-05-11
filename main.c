@@ -2,7 +2,7 @@
 //includes
 #include "functions.h"
 #include <stdint.h>
-#include "key.h"
+//#include "key.h"
 //variables, enums and definitions
 #define set_bit(reg,bit)   reg=reg|(1<<bit)
 #define clr_bit(reg,bit)   reg=(~(1<<bit))&reg
