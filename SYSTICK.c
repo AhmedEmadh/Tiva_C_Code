@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\key\SYSTICK.h"
+#include "SYSTICK.h"
 void SysTick_wait(unsigned long delay){
 	NVIC_ST_CTRL_R=0x00;
 	NVIC_ST_RELOAD_R=delay-1;
