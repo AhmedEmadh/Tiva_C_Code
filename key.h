@@ -1,5 +1,4 @@
 #include "tm4c123gh6pm.h" 
-#include "TM4C123.h"
 #define LCD_DATA GPIOB
 #define LCD_CTRL GPIOA
 #define RS 0x20 /* PORTA BIT5 mask */
