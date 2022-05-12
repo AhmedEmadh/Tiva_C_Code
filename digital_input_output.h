@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\key\key.h"
+#include "key.h"
 #define 	set_bit(name_register,pin_bit)  name_register |=(1<<pin_bit)
 #define 	CLR_bit(name_register,pin_bit)  name_register &= ~(1<<pin_bit)
 #define 	TOG_bit(name_register,pin_bit)  name_register ^=(1<<pin_bit)
