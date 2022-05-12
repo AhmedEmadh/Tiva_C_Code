@@ -2,6 +2,7 @@
 //includes
 #include "functions.h"
 #include <stdint.h>
+#include "IO.h"
 //#include "key.h"
 //variables, enums and definitions
 #define set_bit(reg,bit)   reg=reg|(1<<bit)
