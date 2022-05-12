@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\key\digital_input_output.h"
+#include "digital_input_output.h"
 void port_init(unsigned char port_name){ //init port
  switch(port_name)
  {
