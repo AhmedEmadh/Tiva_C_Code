@@ -5,11 +5,6 @@
 #include "IO.h"
 //#include "key.h"
 //variables, enums and definitions
-#define set_bit(reg,bit)   reg=reg|(1<<bit)
-#define clr_bit(reg,bit)   reg=(~(1<<bit))&reg
-#define read_bit(reg,bit)   ((reg>>bit)&1)
-#define tog_bit(reg,bit)   (reg=reg^(1<<bit))
-
 enum Button{A,B,C,D}; //all buttons
 enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
 enum Bool{False,True};//boolean
