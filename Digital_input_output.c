@@ -6,7 +6,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'A':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,0);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,0))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,0))==0 );
 			GPIO_PORTA_LOCK_R=0X4C4F434B;
 	    GPIO_PORTA_CR_R=0XFF;
 	    GPIO_PORTA_DEN_R =0XFF;
@@ -16,7 +16,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'b':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,1);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,1))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,1))==0 );
 			GPIO_PORTB_LOCK_R=0X4C4F434B;
 	    GPIO_PORTB_CR_R=0XFF;
 	    GPIO_PORTB_DEN_R =0XFF;
@@ -26,7 +26,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'c':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,2);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,2))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,2))==0 );
 			GPIO_PORTC_LOCK_R=0X4C4F434B;
 	    GPIO_PORTC_CR_R=0XFF;
 	    GPIO_PORTC_DEN_R =0XFF;
@@ -36,7 +36,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'd':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,3);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,3))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,3))==0 );
 			GPIO_PORTD_LOCK_R=0X4C4F434B;
 	    GPIO_PORTD_CR_R=0XFF;
 	    GPIO_PORTD_DEN_R =0XFF;
@@ -46,7 +46,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'E':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,4);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,4))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,4))==0 );
 			GPIO_PORTA_LOCK_R=0X4C4F434B;
 	    GPIO_PORTA_CR_R=0XFF;
 	    GPIO_PORTA_DEN_R =0XFF;
@@ -56,7 +56,7 @@ void port_init(unsigned char port_name){ //init port
 	case 'F':
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,5);
-			while ((read_bit(SYSCTL_RCGCGPIO_R,5))==0 );
+			while ((read_bit(SYSCTL_PRGPIO_R,5))==0 );
 			GPIO_PORTA_LOCK_R=0X4C4F434B;
 	    GPIO_PORTA_CR_R=0XFF;
 	    GPIO_PORTA_DEN_R =0X1F;		
