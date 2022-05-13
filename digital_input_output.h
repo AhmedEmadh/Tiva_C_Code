@@ -1,4 +1,4 @@
-#include "key.h"
+#include "tm4c123gh6pm.h"
 #define 	set_bit(name_register,pin_bit)  name_register |=(1<<pin_bit)
 #define 	CLR_bit(name_register,pin_bit)  name_register &= ~(1<<pin_bit)
 #define 	TOG_bit(name_register,pin_bit)  name_register ^=(1<<pin_bit)
