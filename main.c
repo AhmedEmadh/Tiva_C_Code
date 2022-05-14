@@ -3,7 +3,7 @@
 #include "functions.h"
 #include <stdint.h>
 #include "IO.h"
-//#include "key.h"
+#include "key.h"
 //variables, enums and definitions
 enum Button{A,B,C,D}; //all buttons
 enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
@@ -77,16 +77,13 @@ int main() {
             input = keypad_input();
             char inputs[] = {'0','0','0','0'};
             int n;
-            unsigned char SW2_Input (void)
-            {
-                return GPIO_PORTF_DATA_R & 0x01;
-            }
+            //function moved to functions.c
             unsigned char switch2_In;
             switch2_In = SW2_Input();
-            while (SW2_Input = 0x01 && n<4) // while SW2 is not pressed
+            while (SW2_Input() == 0x01 && n<4) // while SW2 is not pressed
             {
                inputs[3-n] = keypad_input();
-               n++
+               n++;
             }
 
             //delay_sec(inputs[0]*10*60+inputs[1]*60+inputs[2]*10+inputs[3]*1) // wrong parameter type
