@@ -1,4 +1,4 @@
-#define  data_port 'a'
+#define data_port 'a'
 #define ctrl_port  'b' 
 #define clear_display     0x01
 #define returnHome        0x02
