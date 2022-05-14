@@ -1,4 +1,5 @@
 #include "functions.h"
+#include "IO.h"
 void initialization(){}
 void lcd_print_str(char *p){}
 void lcd_print_int(int n){}
@@ -14,3 +15,7 @@ void start_cooking(){}
 void stop_cooking(){}
 void delay_sec(int t){}
 void delay_ms(int t){}
+unsigned char SW2_Input (void)
+            {
+                return GPIO_PORTF_DATA_R & 0x01;
+            }

@@ -19,3 +19,4 @@ void start_cooking();//cook all types
 void stop_cooking();//stop cooking all types
 void delay_sec(int t);//makes the board wait for t secounds
 void delay_ms(int t);//makes the board wait for t millisecounds
+unsigned char SW2_Input (void);
