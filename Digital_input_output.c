@@ -1,3 +1,4 @@
+#include "tm4c123gh6pm.h"
 #include "digital_input_output.h"
 void port_init(unsigned char port_name){ //init port
  switch(port_name)
