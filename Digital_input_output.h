@@ -14,3 +14,6 @@ unsigned char digital_input_output_U8Read_pin(unsigned char port_name,unsigned c
 void digital_input_output_VWite_port(unsigned char port_name, unsigned char data);// use to show data (lcd)
 void digital_input_output_VHighlabel(unsigned char port_name, unsigned char data); /*data=10001010		data=10100000		GPIO_PORTA_DATA_R=000000000		GPIO_PORTA_DATA_R=data=10100000		*/
 void digital_input_output_Vlowlabel(unsigned char port_name, unsigned char data);//oppasite for above
+void SysTick_wait(unsigned long delay);
+void delay_ms(unsigned long n);
+void delay_us(unsigned long n);
