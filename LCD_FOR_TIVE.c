@@ -1,3 +1,4 @@
+#include "tm4c123gh6pm.h"
 #include "digital_input_output.h"
 #include "LCD_FOR_TIVE.h"
 void lcd_init(void)
