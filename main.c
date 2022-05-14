@@ -74,6 +74,22 @@ int main() {
             break;
         case other:
             lcd_print_str("Cooking Time?");
+            input = keypad_input();
+            char inputs[] = {'0','0','0','0'};
+            int n;
+            unsigned char SW2_Input (void)
+            {
+                return GPIO_PORTF_DATA_R & 0x01;
+            }
+            unsigned char switch2_In;
+            switch2_In = SW2_Input();
+            while (SW2_Input = 0x01 && n<4) // while SW2 is not pressed
+            {
+               inputs[3-n] = keypad_input();
+               n++
+            }
+
+            //delay_sec(inputs[0]*10*60+inputs[1]*60+inputs[2]*10+inputs[3]*1) // wrong parameter type
             //not completed
             break;
         case error_beef: //added error beef
