@@ -1,5 +1,5 @@
-#include "D:\EE319Kware\InputOutput_4C123\key\file .h fore all.h"
-#include "D:\EE319Kware\InputOutput_4C123\key\LCD_FOR_TIVE.h"
+#include "file .h fore all.h"
+#include "LCD_FOR_TIVE.h"
 void lcd_init(void)
 {
 	digital_input_output_setPort_direction(data_port,0xff);
