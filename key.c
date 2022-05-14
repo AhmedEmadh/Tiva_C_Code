@@ -1,5 +1,5 @@
-#include "digital_input_output.h"
 #include "tm4c123gh6pm.h"
+#include "digital_input_output.h"
 //PORT D ROW 0,1,2,3  C COLUM 4,5,6,7
 void key_pad_init(void);
 unsigned char keypad_read(void)
