@@ -5,7 +5,7 @@
 * [PC4 - PC7] -> [C1 - C4]  Cols
 *  
 ****************************************************/
-#include "D:\EE319Kware\InputOutput_4C123\project\keypad.h"
+#include "keypad.h"
 #include <TM4C123.h>
 
 unsigned int ncols = 0;
