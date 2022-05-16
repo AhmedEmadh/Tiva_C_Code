@@ -1,6 +1,6 @@
-#include "D:\EE319Kware\InputOutput_4C123\project\LCD.h"
+#include "LCD.h"
 #include <TM4C123.h>
-#include "D:\EE319Kware\InputOutput_4C123\project\Delay.h"
+#include "Delay.h"
 
 /**
 *  @detailed  This function initialize Port A & B to
