@@ -1,5 +1,5 @@
-#include "LCD.h"
 #include <TM4C123.h>
+#include "LCD.h"
 #include "Delay.h"
 
 /**
