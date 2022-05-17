@@ -11,11 +11,11 @@ unsigned const char mysymbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},
                                                 { '*', '0',  '#', 'D'}};
 int i = 0 ; //global iterator
 void initialization(){}
-void lcd_print_str(char *p){
+void lcd_print_str(char *p){    // print a string
 LCD_printString(*p);   
 }
-void lcd_print_int(int n){
-    LCD_printInt(n);
+void lcd_print_int(int n){  // print integer 
+    LCD_printInt(n);        
 
 }
 void lcd_print_str_row(char *p,int row){
@@ -27,7 +27,7 @@ void lcd_print_int_row(int n,int row){
     LCD_setcursorRowCol(row,0);
     LCD_printInt(n);
 }
-void lcd_clear(){
+void lcd_clear(){                 // clear screen
     LCD_command(CLEAR_DISPLAY);
 }
 char keypad_input(){
