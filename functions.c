@@ -17,23 +17,23 @@ LCD_printString(*p);
 void lcd_print_int(int n){  // print integer 
     LCD_printInt(n);        
 
-}
-void lcd_print_str_row(char *p,int row){
+}        
+void lcd_print_str_row(char *p,int row){   // print string in a selected row
     LCD_setcursorRowCol(row,0);
     LCD_printString(*p);
 
 }
-void lcd_print_int_row(int n,int row){
+void lcd_print_int_row(int n,int row){     // print integer in selected row
     LCD_setcursorRowCol(row,0);
     LCD_printInt(n);
 }
 void lcd_clear(){                 // clear screen
     LCD_command(CLEAR_DISPLAY);
 }
-char keypad_input(){
+char keypad_input(){             // get inputs from keypad
     keypad_getkey();
 }
-void pop_count_down(void)
+void pop_count_down(void)        // count down for popcorn
 {
     lcd_clear();
     for (i=60;i<=0;i--){
@@ -43,7 +43,7 @@ void pop_count_down(void)
     }
     
 }
-void beef_count_down(int weight){
+void beef_count_down(int weight){       // count down for beef
     int time_sec = weight * 30;
     lcd_clear();
     for (time_sec = weight * 30; time_sec <=0; time_sec --){
@@ -51,7 +51,7 @@ void beef_count_down(int weight){
         delay_sec(1);
     }
 }
-void chicken_count_down(int weight){
+void chicken_count_down(int weight){     // count down for chicken
     int time_sec = weight * 12;
     lcd_clear();
     for (time_sec = weight * 12; time_sec <=0; time_sec --){
@@ -59,25 +59,25 @@ void chicken_count_down(int weight){
         delay_sec(1);
     }
 }
-void delay_sec(int t){
+void delay_sec(int t){              // delay in seconds
     for (i =1000;i<=0; i--){
         delayMs(t);
     }
 }
-void delay_ms(int t){
+void delay_ms(int t){            // delay in milisecond
     delayMs(t);
 }
-unsigned char SW2_Input (void)
+unsigned char SW2_Input (void)     // get input from switch 2
 {
     return GPIO_PORTF_DATA_R & 0x01;
 }
 
-unsigned char SW1_Input (void)
+unsigned char SW1_Input (void)       // get input from switch 1
 {
     return GPIO_PORTF_DATA_R & 0x10;
 }
 
-char keypad_switch_input(){
+char keypad_switch_input(){            // get input from keypad and switches
     int i=0,j=0;
   while(1)
   {
@@ -101,11 +101,11 @@ char keypad_switch_input(){
     /////////////End
   }
 }
-int char_to_int(char c){
+int char_to_int(char c){      // convert char to integer
     int intg = c - '0';
     return intg;
 }
-void displaytime_char(char mc1,char mc0,char sc1,char sc0){
+void displaytime_char(char mc1,char mc0,char sc1,char sc0){     // convert char to integer and display time 
 int m1,m0,s1,s0,m,s;
 m1 = char_to_int(mc1);
 m0 = char_to_int(mc0);
