@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\project\Delay.h"
+#include "Delay.h"
 void delay_ms(int time)
 {
 int i, j;
