@@ -1,8 +1,8 @@
 /*
-*  @Hardware Connentions
+*  @ Ahmed Abd Elmotelb Ali
 *
-* [PE1 - PE4] -> [R1 - R4]  Raws
-* [PC4 - PC7] -> [C1 - C4]  Cols
+* [PE1 - PE4].....................[R1 - R4]  Raws
+* [PC4 - PC7] ................... [C1 - C4]  Cols
 *  
 ****************************************************/
 #include "keypad.h"
@@ -22,6 +22,7 @@ unsigned const char symbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},
 */
 void keypad_Init(void)
 {
+	// I used port c, D raw as input cols as out put 
   SYSCTL_RCGCGPIO_R |= 0x14;            //enable clc for port C & D  
   while ((SYSCTL_RCGCGPIO_R&0x14)==0);  //wait for clock to be enabled
   GPIO_PORTC_CR_R  |= 0xF0;             //allow changes to all the bits in port C
@@ -35,7 +36,7 @@ void keypad_Init(void)
 
 /**
 *  @detailed  This function returns the value of a key have been pressed at the moment the function had been called. 
-*             It simply makes a 2 loops one to find the column which contains the button 
+*             It  makes a 2 loops one to find the column which contains the button 
 *             had been pressd and another loop to determine the row of that button. 
 *             Having these data the we could determine a unique value for each button.
 */
@@ -56,3 +57,5 @@ char keypad_getkey(void)
     }
   }
 }
+
+
