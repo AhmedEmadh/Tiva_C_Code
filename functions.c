@@ -106,10 +106,10 @@ char keypad_switch_input(){            // get input from keypad and switches
                 }
         }
     /////////////Ahmed Emad Added here
-        if(SW2_Input() != 0x01){//if pressed
+        if(SW2_Input() == 1){//if pressed
             return 'S';
         }
-        if(SW1_Input() != 0x10){//if pressed
+        if(SW1_Input() == 0){//if pressed
             return 'H';
         }
         /////////////End
