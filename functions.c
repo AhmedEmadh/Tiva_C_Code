@@ -10,9 +10,20 @@ unsigned const char mysymbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},
                                                 { '7', '8',  '9', 'C'},      
                                                 { '*', '0',  '#', 'D'}};
 int i = 0 ; //global iterator
-void initialization(){}
+void initialization(){
+	// init port F
+ 			set_bit( SYSCTL_RCGCGPIO_R,5);
+			while ((read_bit(SYSCTL_PRGPIO_R,5))==0 );
+			GPIO_PORTF_LOCK_R=0X4C4F434B;
+	    GPIO_PORTF_CR_R=0XFF;
+	    GPIO_PORTF_DEN_R =0X1F;	
+	// end port f init
+		keypad_Init();
+		LCD_Init();
+
+}
 void lcd_print_str(char *p){    // print a string
-LCD_printString(*p);   
+LCD_printString(&*p);   
 }
 void lcd_print_int(int n){  // print integer 
     LCD_printInt(n);        
@@ -20,7 +31,7 @@ void lcd_print_int(int n){  // print integer
 }        
 void lcd_print_str_row(char *p,int row){   // print string in a selected row
     LCD_setcursorRowCol(row,0);
-    LCD_printString(*p);
+    LCD_printString(&*p);
 
 }
 void lcd_print_int_row(int n,int row){     // print integer in selected row
@@ -31,40 +42,51 @@ void lcd_clear(){                 // clear screen
     LCD_command(CLEAR_DISPLAY);
 }
 char keypad_input(){             // get inputs from keypad
-    keypad_getkey();
+   return keypad_getkey();
 }
-void pop_count_down(void)        // count down for popcorn
+void pop_count_down(int weight)        // count down for popcorn
 {
+    int time_sec = 0;
     lcd_clear();
-    for (i=60;i<=0;i--){
-       displayTime(0,0,i,0);
-       delay_sec(1);
-
+	time_sec = weight*60;
+	while(time_sec>=0)
+	{
+	displayTime(0,time_sec/60,time_sec%60,0);
+		delayMs(1000);
+		time_sec --;
+	}
     }
     
-}
+
 void beef_count_down(int weight){       // count down for beef
-    int time_sec = weight * 30;
+    int time_sec = 0;
     lcd_clear();
-    for (time_sec = weight * 30; time_sec <=0; time_sec --){
-        displayTime(0,time_sec/60,time_sec % 60,0);
-        delay_sec(1);
-    }
+	time_sec = weight*30;
+	while(time_sec>=0)
+	{
+	displayTime(0,time_sec/60,time_sec%60,0);
+		delayMs(1000);
+		time_sec --;
+	}
+	
 }
-void chicken_count_down(int weight){     // count down for chicken
-    int time_sec = weight * 12;
+void chicken_count_down(int weight){     // count down while chicken
+    int time_sec = 0;
     lcd_clear();
-    for (time_sec = weight * 12; time_sec <=0; time_sec --){
-        displayTime(0,time_sec/60,time_sec % 60,0);
-        delay_sec(1);
-    }
+	time_sec = weight*12;
+	while(time_sec>=0)
+	{
+	displayTime(0,time_sec/60,time_sec%60,0);
+		delayMs(1000);
+		time_sec --;
+	}
 }
 void delay_sec(int t){              // delay in seconds
     for (i =1000;i<=0; i--){
         delayMs(t);
     }
 }
-void delay_ms(int t){            // delay in milisecond
+void delay_Ms(int t){            // delay in milisecond
     delayMs(t);
 }
 unsigned char SW2_Input (void)     // get input from switch 2
@@ -128,8 +150,9 @@ return (m*60 + s);
 void other_count_down(int time_sec){
     
     lcd_clear();
-    for (i = time_sec; i <=0; i --){
+    for (i = time_sec; i >=0; i --){
         displayTime(0,i/60,i% 60,0);
         delay_sec(1);
     }
 }
+
