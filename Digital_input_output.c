@@ -86,7 +86,6 @@ switch(port_name)
 			set_bit(GPIO_PORTB_DIR_R,pin_number);
 		else 
 			CLR_bit(GPIO_PORTB_DIR_R,pin_number);
-			67	
 	}	
 	break;
 	case 'C':
@@ -544,4 +543,5 @@ void digital_input_output_Vlowlabel(unsigned char port_name, unsigned char data)
 			break;				
 		}	
 }
+
 
