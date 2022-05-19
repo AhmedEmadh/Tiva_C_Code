@@ -1,3 +1,5 @@
+#ifndef __function_H__
+#define __function_H__
 //macros help to edit registers
 #define set_bit(reg,bit)   reg=reg|(1<<bit)
 #define clr_bit(reg,bit)   reg=(~(1<<bit))&reg
@@ -26,3 +28,5 @@ unsigned char SW1_Input (void);
 void displaytime_char(char m1,char m0,char s1,char s0);
 int char_to_int(char c);//char to int converter
 int inputs_to_seconds (char mc1,char mc0,char sc1,char sc0);
+#endif
+
