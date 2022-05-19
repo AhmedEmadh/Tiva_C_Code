@@ -5,7 +5,7 @@
 #define  padRows  4
 #define  padCols  4
 
-void keypad_Init       (void);
-char keypad_getkey     (void);
+void keypad_Init       (void); // used for init keypad
+char keypad_getkey     (void); // used to return value when key pad pressed
 
 #endif
