@@ -15,7 +15,7 @@ char input;
 int j = 0; //global iterator
 //main function
 	int main() {
-	        unsigned char SW2_In =0x11;
+	        unsigned char SW2_In;
 	        int i;
 	        int time_seconds_other;
 	        char inputs[] = {'0','0','0','0'};
@@ -93,28 +93,29 @@ int j = 0; //global iterator
         case other:
             other_start:
             lcd_clear();
-            while(SW1_Input() == 0x10){}
+            while(SW1_Input() == 1){}//wait if sw1 is pressed (come from goto case)
            
             do{
                 lcd_print_str("Cooking Time?");
                 delay_sec(2);
                 lcd_clear();
                 SW2_In = SW2_Input();
-                do{
+                while(1){
                     input = keypad_switch_input();
-                    if(input == 'S'){break;}
-                    if (input == 'H'){goto other_start;}
-                    temp[3] = input;
+                    if(input == 'S'){break;}//if SW2 pressed give ok to the number
+                    if (input == 'H'){goto other_start;}//if SW1 pressed clear the LCD and start the case again
+                    temp[3] = input;//if other button pressed start the putting it in the screen by converting it into integer
                     temp[2] = inputs[3];
                     temp[1] = inputs[2];
-                    temp[0] = inputs[1];
-                    for(i=0;i<=3;i++){inputs[i] = temp[i];}
+                    temp[0] = inputs[1];//temp here is ready to be cloned by input
+                    for(i=0;i<=3;i++){inputs[i] = temp[i];}//put inputs[] = temp[] (cloning)
                     displaytime_char(inputs[0],inputs[1],inputs[2],inputs[3]);
-                }while(SW2_In == 0x01);//while not pressed
-            }while((char_to_int(inputs[0]) >= 30) && (char_to_int(inputs[0]) == 0));
-
+                }//while SW2 not pressed
+            }while((char_to_int(inputs[0]) >= 30) || (char_to_int(inputs[0]) == 0));//if minites >= 30 or equals 0 ==> reject and loop again 
+            //if time allowed convert it to secounds and count down 
             time_seconds_other = inputs_to_seconds (inputs[0],inputs[1],inputs[2],inputs[3]);
             other_count_down(time_seconds_other);
+            state = not_cooking;
             break;
         case error_beef: //added error beef
             lcd_print_str("Err");

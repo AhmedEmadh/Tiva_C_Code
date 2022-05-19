@@ -90,13 +90,13 @@ void delay_Ms(int t){            // delay in milisecond
     delayMs(t);
 }
 unsigned char SW2_Input (void)     // get input from switch 2
-{
-    return GPIO_PORTF_DATA_R & 0x01;
+{//returns 1 if pressed and 0 if not
+    return ((GPIO_PORTF_DATA_R & 0x01)==1)?0:1;
 }
 
 unsigned char SW1_Input (void)       // get input from switch 1
-{
-    return GPIO_PORTF_DATA_R & 0x10;
+{//return 1 if pressed and 0 if not
+    return (((GPIO_PORTF_DATA_R & 0x10)>>4) == 1)?0:1;
 }
 
 char keypad_switch_input(){            // get input from keypad and switches
