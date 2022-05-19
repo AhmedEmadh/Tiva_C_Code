@@ -17,3 +17,5 @@ void digital_input_output_Vlowlabel(unsigned char port_name, unsigned char data)
 void SysTick_wait(unsigned long delay);
 void delay_ms(unsigned long n);
 void delay_us(unsigned long n);
+#endif
+
