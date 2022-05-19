@@ -2,7 +2,7 @@
 //includes
 #include "functions.h"
 #include <stdint.h>
-#include "IO.h"
+#include "LCD.h"
 #include "keypad.h"
 //variables, enums and definitions
 enum Button{A,B,C,D}; //all buttons
@@ -12,9 +12,15 @@ enum State state = not_cooking;
 enum Bool door_closed = False;
 int weight;
 char input;
-int i = 0; //global iterator
+int j = 0; //global iterator
 //main function
-int main() {
+	int main() {
+	        unsigned char SW2_In =0x11;
+	        int i;
+	        int time_seconds_other;
+	        char inputs[] = {'0','0','0','0'};
+          char temp [] = {'0','0','0','0'};
+
     //initialization for board
     initialization();
     while(1){ //loop
@@ -30,12 +36,18 @@ int main() {
             break;
         case popcorn:
             lcd_print_str("popcorn");
-            pop_count_down(); //count from 60 s to 0
+			    	 delay_ms(2000);
+            pop_count_down(1); //count from 60 s to 0
             lcd_clear();
+					  lcd_print_str("End popcorn");
+					  delay_ms(2000);
+            lcd_clear();
+					  delay_ms(2000);
             state = not_cooking;
             break;
         case beef:
             lcd_print_str("Beef weight?");
+						delay_ms(2000);
             input = keypad_input();
             if ( !(input == 'A' || input =='B' || input =='C' || input =='D' || input =='*' || input =='#' || input =='0') )//changed smalles to Capitals
             {   //Valid number
@@ -44,6 +56,9 @@ int main() {
                 delay_sec (2);
                 lcd_clear();
                 beef_count_down(weight); // starts a countdown with a time = 30s * weight
+                lcd_clear();
+							  lcd_print_str("End Beef weight");
+							  delay_ms(2000);
                 lcd_clear();
                 state = not_cooking;
             }
@@ -54,6 +69,7 @@ int main() {
             break;
         case chicken:
             lcd_print_str("chicken weight?");
+						delay_ms(2000);
             input = keypad_input();
             if (!(input == 'A' || input =='B' || input =='C' || input =='D' || input =='*' || input =='#' || input =='0'))//changed smalles to Capitals
             {//valid number
@@ -62,7 +78,10 @@ int main() {
             delay_sec (2);
             lcd_clear();
             lcd_print_int(weight);
-            chicken_count_down(); // starts a countdown with a time = 12s * weight
+            chicken_count_down(weight); // starts a countdown with a time = 12s * weight
+            lcd_clear();
+					  lcd_print_str("End Beef weight");
+						delay_ms(2000);
             lcd_clear();
             state = not_cooking;
             }
@@ -72,13 +91,10 @@ int main() {
             }
             break;
         case other:
-        int time_seconds_other;
             other_start:
             lcd_clear();
             while(SW1_Input() == 0x10){}
-            char inputs[] = {'0','0','0','0'};
-            char temp [] = {'0','0','0','0'};
-            unsigned char SW2_In;
+           
             do{
                 lcd_print_str("Cooking Time?");
                 delay_sec(2);
@@ -98,7 +114,7 @@ int main() {
             }while((char_to_int(inputs[0]) >= 30) && (char_to_int(inputs[0]) == 0));
 
             time_seconds_other = inputs_to_seconds (inputs[0],inputs[1],inputs[2],inputs[3]);
-            other_countdown(time_seconds_other);
+            other_count_down(time_seconds_other);
             break;
         case error_beef: //added error beef
             lcd_print_str("Err");
@@ -120,3 +136,4 @@ int main() {
         }
     }//loop end
 }
+
