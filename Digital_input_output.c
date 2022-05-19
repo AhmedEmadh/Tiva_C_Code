@@ -49,9 +49,9 @@ void port_init(unsigned char port_name){ //init port
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,4);
 			while ((read_bit(SYSCTL_PRGPIO_R,4))==0 );
-			GPIO_PORTA_LOCK_R=0X4C4F434B;
-	    GPIO_PORTA_CR_R=0XFF;
-	    GPIO_PORTA_DEN_R =0XFF;
+			GPIO_PORTE_LOCK_R=0X4C4F434B;
+	    GPIO_PORTE_CR_R=0XFF;
+	    GPIO_PORTE_DEN_R =0XFF;
 	}
 	break;
 	case 'f':
@@ -59,9 +59,9 @@ void port_init(unsigned char port_name){ //init port
 	{
 			set_bit( SYSCTL_RCGCGPIO_R,5);
 			while ((read_bit(SYSCTL_PRGPIO_R,5))==0 );
-			GPIO_PORTA_LOCK_R=0X4C4F434B;
-	    GPIO_PORTA_CR_R=0XFF;
-	    GPIO_PORTA_DEN_R =0X1F;		
+			GPIO_PORTF_LOCK_R=0X4C4F434B;
+	    GPIO_PORTF_CR_R=0XFF;
+	    GPIO_PORTF_DEN_R =0X1F;		
 	}		
 	break;
  }
@@ -86,7 +86,7 @@ switch(port_name)
 			set_bit(GPIO_PORTB_DIR_R,pin_number);
 		else 
 			CLR_bit(GPIO_PORTB_DIR_R,pin_number);
-			
+			67	
 	}	
 	break;
 	case 'C':
@@ -249,31 +249,31 @@ void digital_input_output_setPort_direction(unsigned char port_name,unsigned cha
 	case 'B':
 	case 'b':
 	{
-			GPIO_PORTA_DIR_R=direction;
+			GPIO_PORTB_DIR_R=direction;
 	}
 	break;
 	case 'C':
 	case 'c':
 	{
-			GPIO_PORTA_DIR_R=direction;
+			GPIO_PORTC_DIR_R=direction;
 	}
 	break;
 	case 'D':
 	case 'd':
 	{
-			GPIO_PORTA_DIR_R=direction;
+			GPIO_PORTD_DIR_R=direction;
 	}
 	break;
 	case 'E':
 	case 'e':
 	{
-			GPIO_PORTA_DIR_R=direction;
+			GPIO_PORTE_DIR_R=direction;
 	}
 	break;
 	case 'f':
 	case 'F':
 	{
-			GPIO_PORTA_DIR_R=direction;
+			GPIO_PORTF_DIR_R=direction;
 	}
 	break;
 }
@@ -458,36 +458,36 @@ void digital_input_output_VHighlabel(unsigned char port_name, unsigned char data
 				GPIO_PORTA_DATA_R|=data;
 			}
 			break;
-			case'B'
-			case'b'
+			case'B':
+			case'b':
 			{
 				GPIO_PORTB_DATA_R&=0x0f;
 				GPIO_PORTB_DATA_R|=data;
 			}
 			break;
-			case'C'
-			case'c'
+			case'C':
+			case'c':
 			{
 				GPIO_PORTC_DATA_R&=0x0f;
 				GPIO_PORTC_DATA_R|=data;
 			}
 			break;
-			case'D'
-			case'd'
+			case'D':
+			case'd':
 			{
 				GPIO_PORTD_DATA_R&=0x0f;
 				GPIO_PORTD_DATA_R|=data;
 			}
 			break;
-			case'E'
-			case'e'
+			case'E':
+			case'e':
 			{
 				GPIO_PORTE_DATA_R&=0x0f;
 				GPIO_PORTE_DATA_R|=data;
 			}
 			break;
-			case'F'
-			case'f'
+			case'F':
+			case'f':
 			{
 				GPIO_PORTF_DATA_R&=0x0f;
 				GPIO_PORTF_DATA_R|=data;
@@ -544,3 +544,4 @@ void digital_input_output_Vlowlabel(unsigned char port_name, unsigned char data)
 			break;				
 		}	
 }
+
