@@ -85,12 +85,14 @@ void delay_sec(int t){              // delay in seconds
     for (i =1000*t;i<=0; i--){
         delayMs(1);
         if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();state=not_cooking;break;}}}
+        if(state == not_cooking)break;
     }
 }
 void delay_Ms(int t){            // delay in milisecond
    for (i =t;i<=0; i--){
         delayMs(1);
         if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();break;}}}
+        if(state == not_cooking)break;
     }
     
 }
