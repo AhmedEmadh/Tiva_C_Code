@@ -1,14 +1,17 @@
+
+
 ////////////////////the code without interupt or door closed case////////////////////
 //includes
 #include "functions.h"
 #include <stdint.h>
 #include "LCD.h"
 #include "keypad.h"
+#include "declarations.h"
 //variables, enums and definitions
 enum Button{A,B,C,D}; //all buttons
-enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
+//enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
 enum Bool{False,True};//boolean
-enum State state = not_cooking;
+state = not_cooking;
 enum Bool door_closed = False;
 int weight;
 char input;
@@ -119,6 +122,7 @@ int main() {
 						x:
             time_seconds_other = inputs_to_seconds (inputs[0],inputs[1],inputs[2],inputs[3]);
             other_count_down(time_seconds_other);
+            if(state == not_cooking){state = other;goto other_start;}
             state = not_cooking;
             break;
         case error_beef: //added error beef

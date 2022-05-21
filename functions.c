@@ -7,6 +7,7 @@
 #include "keypad.h"
 #include <stdint.h>
 #include "SYSTICK.h"
+#include "declarations.h"
 unsigned const char mysymbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},      
                                                 { '4', '5',  '6', 'B'},      
                                                 { '7', '8',  '9', 'C'},      
@@ -83,13 +84,13 @@ void chicken_count_down(int weight){     // count down while chicken
 void delay_sec(int t){              // delay in seconds
     for (i =1000*t;i<=0; i--){
         delayMs(1);
-        if(SW1_is_pressed == True){delayMs(100);while(SW2_is_pressed == False){/*I will put SW1 pressed again here*/}}
+        if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();state=not_cooking;break;}}}
     }
 }
 void delay_Ms(int t){            // delay in milisecond
    for (i =t;i<=0; i--){
         delayMs(1);
-        if(SW1_is_pressed == True){delayMs(100);while(SW2_is_pressed == False){/*I will put SW1 pressed again here*/}}
+        if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();break;}}}
     }
     
 }
@@ -167,7 +168,8 @@ void other_count_down(int time_sec){
 while(x>=0)
 	{
 	displayTime(0,x/60,x%60,0);
-		delay_ms(1000);		  
+		delay_ms(1000);
+        if(state == not_cooking)break;		  
 		x --;
 	}
 }
