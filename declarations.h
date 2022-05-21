@@ -1,0 +1,9 @@
+#define not_cooking 0
+#define popcorn 1
+#define beef 2
+#define chicken 3
+#define other 4
+#define error_beef 5
+#define error_chicken 6
+#define error_other 7
+extern int state;
