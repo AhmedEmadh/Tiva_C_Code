@@ -1,3 +1,5 @@
+#ifndef __Digital_input_output_H__
+#define __Digital_input_output_H__
 #include "tm4c123gh6pm.h"
 #define 	set_bit(name_register,pin_bit)  name_register |=(1<<pin_bit)
 #define 	CLR_bit(name_register,pin_bit)  name_register &= ~(1<<pin_bit)
