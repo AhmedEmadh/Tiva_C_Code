@@ -1,3 +1,5 @@
+#define False 0
+#define True 1
 #include "functions.h"
 #include "IO.h"
 #include "LCD.h"
@@ -79,12 +81,17 @@ void chicken_count_down(int weight){     // count down while chicken
 	}
 }
 void delay_sec(int t){              // delay in seconds
-    for (i =1000;i<=0; i--){
-        delayMs(t);
+    for (i =1000*t;i<=0; i--){
+        delayMs(1);
+        if(SW1_is_pressed == True){delayMs(100);while(SW2_is_pressed == False){/*I will put SW1 pressed again here*/}}
     }
 }
 void delay_Ms(int t){            // delay in milisecond
-    delayMs(t);
+   for (i =t;i<=0; i--){
+        delayMs(1);
+        if(SW1_is_pressed == True){delayMs(100);while(SW2_is_pressed == False){/*I will put SW1 pressed again here*/}}
+    }
+    
 }
 unsigned char SW2_is_pressed (void)     // get input from switch 2
 {//returns 1 if pressed and 0 if not
