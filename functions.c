@@ -12,11 +12,14 @@ unsigned const char mysymbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},
 int i = 0 ; //global iterator
 void initialization(){
 	// init port F
-    set_bit( SYSCTL_RCGCGPIO_R,5);
-    while ((read_bit(SYSCTL_PRGPIO_R,5))==0 );
+   SYSCTL_RCGCGPIO_R |= 0x20;            //enable clc for port f
+  while ((SYSCTL_RCGCGPIO_R&0x20)==0){};
     GPIO_PORTF_LOCK_R=0X4C4F434B;
-    GPIO_PORTF_CR_R=0XFF;
-    GPIO_PORTF_DEN_R =0X1F;	
+		GPIO_PORTF_PUR_R|=0X11;
+    GPIO_PORTF_CR_R|=0XFF;
+		GPIO_PORTF_DIR_R|=0X0E;
+    GPIO_PORTF_DEN_R |=0X1F;	
+	  GPIO_PORTF_DATA_R|=0x11;
 	// end port f init
     keypad_Init();
     LCD_Init();
@@ -49,7 +52,7 @@ void pop_count_down(int weight)        // count down for popcorn
 	while(time_sec>=0)
 	{
 	displayTime(0,time_sec/60,time_sec%60,0);
-		delayMs(1000);
+    delayMs(1000);
 		time_sec --;
 	}
     }
@@ -109,7 +112,7 @@ char keypad_switch_input(){            // get input from keypad and switches
         if(SW2_Input() == 1){//if pressed
             return 'S';
         }
-        if(SW1_Input() == 0){//if pressed
+        if(SW1_Input() == 1){//if pressed
             return 'H';
         }
         /////////////End
@@ -121,10 +124,21 @@ int char_to_int(char c){      // convert char to integer
 }
 void displaytime_char(char mc1,char mc0,char sc1,char sc0){     // convert char to integer and display time 
     int m1,m0,s1,s0,m,s;
-    m1 = char_to_int(mc1);
+	  m1 = char_to_int(mc1);
     m0 = char_to_int(mc0);
     s1 = char_to_int(sc1);
     s0 = char_to_int(sc0);
+    m = m1 * 10 + m0;
+    s = s1 * 10 + s0;
+	if(m>30){
+		           if(s<60){
+               		lcd_clear();
+	                lcd_print_str("Error In Timer");
+		                delay_ms(2000);
+                   lcd_clear();
+							 }
+	
+	}
     m = m1 * 10 + m0;
     s = s1 * 10 + s0;
     displayTime(0,m,s,0);
@@ -140,9 +154,13 @@ int inputs_to_seconds (char mc1,char mc0,char sc1,char sc0){
     return (m*60 + s);
 }
 void other_count_down(int time_sec){    
-    lcd_clear();
-    for (i = time_sec; i >=0; i --){
-        displayTime(0,i/60,i% 60,0);
-        delay_sec(1);
-    }
+ int x=0;  
+	x=time_sec;
+	lcd_clear();
+while(x>=0)
+	{
+	displayTime(0,x/60,x%60,0);
+		delay_ms(1000);		  
+		x --;
+	}
 }
