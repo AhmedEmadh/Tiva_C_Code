@@ -23,8 +23,8 @@ void delay_sec(int t);//makes the board wait for t secounds
 //void delay_ms(int t);//makes the board wait for t millisecounds
 char keypad_switch_input();
 void other_count_down(int time_sec);
-unsigned char SW2_Input (void);
-unsigned char SW1_Input (void);
+unsigned char SW2_is_pressed (void);
+unsigned char SW1_is_pressed (void);
 void displaytime_char(char m1,char m0,char s1,char s0);
 int char_to_int(char c);//char to int converter
 int inputs_to_seconds (char mc1,char mc0,char sc1,char sc0);

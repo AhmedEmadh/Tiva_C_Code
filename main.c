@@ -93,7 +93,7 @@ int main() {
         case other:
             other_start:
             lcd_clear();
-            while(SW1_Input() == 1){}//wait if sw1 is pressed (come from goto case)
+            while(SW1_is_pressed() == 1){}//wait if sw1 is pressed (come from goto case)
            
             do{
                 lcd_print_str("Cooking Time?");
@@ -111,7 +111,7 @@ int main() {
                     for(i=0;i<=3;i++){inputs[i] = temp[i];}//put inputs[] = temp[] (cloning)
                     displaytime_char(inputs[0],inputs[1],inputs[2],inputs[3]);
 				            delay_ms(2000);
-										SW2_In = SW2_Input();										
+										SW2_In = SW2_is_pressed();										
 										if(SW2_In==0x01){goto x;}
                 }//while SW2 not pressed
             }while(1);

@@ -86,11 +86,11 @@ void delay_sec(int t){              // delay in seconds
 void delay_Ms(int t){            // delay in milisecond
     delayMs(t);
 }
-unsigned char SW2_Input (void)     // get input from switch 2
+unsigned char SW2_is_pressed (void)     // get input from switch 2
 {//returns 1 if pressed and 0 if not
     return ((GPIO_PORTF_DATA_R & 0x01)==1)?0:1;
 }
-unsigned char SW1_Input (void)       // get input from switch 1
+unsigned char SW1_is_pressed (void)       // get input from switch 1
 {//return 1 if pressed and 0 if not
     return (((GPIO_PORTF_DATA_R & 0x10)>>4) == 1)?0:1;
 }
@@ -109,10 +109,10 @@ char keypad_switch_input(){            // get input from keypad and switches
                 }
         }
     /////////////Ahmed Emad Added here
-        if(SW2_Input() == 1){//if pressed
+        if(SW2_is_pressed() == 1){//if pressed
             return 'S';
         }
-        if(SW1_Input() == 1){//if pressed
+        if(SW1_is_pressed() == 1){//if pressed
             return 'H';
         }
         /////////////End
