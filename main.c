@@ -1,17 +1,16 @@
 
-
 ////////////////////the code without interupt or door closed case////////////////////
 //includes
 #include "functions.h"
 #include <stdint.h>
 #include "LCD.h"
 #include "keypad.h"
-#include "declarations.h"
+#include "led.h"
 //variables, enums and definitions
 enum Button{A,B,C,D}; //all buttons
-//enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
+enum State{not_cooking,popcorn,beef,chicken,other,error_beef,error_chicken,error_other}; //all states
 enum Bool{False,True};//boolean
-state = not_cooking;
+enum State state = not_cooking;
 enum Bool door_closed = False;
 int weight;
 char input;
@@ -40,29 +39,43 @@ int main() {
         case popcorn:
             lcd_print_str("popcorn");
             delay_ms(2000);
-            pop_count_down(1); //count from 60 s to 0
+				while(1){
+					  lcd_clear();
+            lcd_print_str("please press sw2");
+            delay_ms(2000);
+         if(GPIO_PORTF_DATA_R==0x10){break;}
+}
+					  lcd_clear();
+    				pop_count_down(1); //count from 60 s to 0
             lcd_clear();
             lcd_print_str("End popcorn");
             delay_ms(2000);
-            lcd_clear();
-					  delay_ms(2000);
+						led();
             state = not_cooking;
         break;
         case beef:
             lcd_print_str("Beef weight?");
             delay_ms(2000);
             input = keypad_input();
+				
             if ( !(input == 'A' || input =='B' || input =='C' || input =='D' || input =='*' || input =='#' || input =='0') )//changed smalles to Capitals
             {   //Valid number
                 weight = input - '0';
                 lcd_print_int(weight);
                 delay_sec (2);
                 lcd_clear();
+while(1){
+					  lcd_clear();
+            lcd_print_str("please press sw2");
+            delay_ms(2000);
+         if(GPIO_PORTF_DATA_R==0x10){break;}
+}
                 beef_count_down(weight); // starts a countdown with a time = 30s * weight
                 lcd_clear();
                 lcd_print_str("End Beef weight");
                 delay_ms(2000);
                 lcd_clear();
+		     				led();
                 state = not_cooking;
             }
             else
@@ -81,11 +94,18 @@ int main() {
             delay_sec (2);
             lcd_clear();
             lcd_print_int(weight);
+						while(1){
+					  lcd_clear();
+            lcd_print_str("please press sw2");
+            delay_ms(2000);
+         if(GPIO_PORTF_DATA_R==0x10){break;}
+}
             chicken_count_down(weight); // starts a countdown with a time = 12s * weight
             lcd_clear();
             lcd_print_str("End Beef weight");
             delay_ms(2000);
             lcd_clear();
+						led();
             state = not_cooking;
             }
             else
@@ -96,33 +116,32 @@ int main() {
         case other:
             other_start:
             lcd_clear();
-            while(SW1_is_pressed() == 1){}//wait if sw1 is pressed (come from goto case)
+            while(SW1_Input() == 1){}//wait if sw1 is pressed (come from goto case)
            
             do{
                 lcd_print_str("Cooking Time?");
                 delay_ms(2000);
                 lcd_clear();
                 while(1){
-                    input = keypad_switch_input();
+                    input = keypad_input();
 				            delay_ms(2000);		  
-                    if(input == 'S'){break;}//if SW2 pressed give ok to the number
-                    if (input == 'H'){goto other_start;}//if SW1 pressed clear the LCD and start the case again
+                    if (GPIO_PORTF_DATA_R == 0X01){goto other_start;}//if SW1 pressed clear the LCD and start the case again
                     temp[3] = input;//if other button pressed start the putting it in the screen by converting it into integer
                     temp[2] = inputs[3];
                     temp[1] = inputs[2];
                     temp[0] = inputs[1];//temp here is ready to be cloned by input
                     for(i=0;i<=3;i++){inputs[i] = temp[i];}//put inputs[] = temp[] (cloning)
                     displaytime_char(inputs[0],inputs[1],inputs[2],inputs[3]);
-				            delay_ms(2000);
-										SW2_In = SW2_is_pressed();										
-										if(SW2_In==0x01){goto x;}
+				            delay_ms(2000);	
+										if(GPIO_PORTF_DATA_R==0x10){goto x;}
                 }//while SW2 not pressed
             }while(1);
 
 						x:
             time_seconds_other = inputs_to_seconds (inputs[0],inputs[1],inputs[2],inputs[3]);
             other_count_down(time_seconds_other);
-            if(state == not_cooking){state = other;goto other_start;}
+		        lcd_print_str("End Cooking Time");
+						led();
             state = not_cooking;
             break;
         case error_beef: //added error beef
@@ -145,4 +164,5 @@ int main() {
         }
     }//loop end
 }
+
 
