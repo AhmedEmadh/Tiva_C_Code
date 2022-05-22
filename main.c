@@ -1,6 +1,6 @@
-
 ////////////////////the code without interupt or door closed case////////////////////
 //includes
+#include "interrupt.h"
 #include "functions.h"
 #include <stdint.h>
 #include "LCD.h"
@@ -22,7 +22,7 @@ int main() {
     int time_seconds_other;
     char inputs[] = {'0','0','0','0'};
     char temp [] = {'0','0','0','0'};
-
+    edge_counter_init();//use for interrupt
     //initialization for board
     initialization();
     while(1){ //loop
@@ -133,7 +133,7 @@ while(1){
                     for(i=0;i<=3;i++){inputs[i] = temp[i];}//put inputs[] = temp[] (cloning)
                     displaytime_char(inputs[0],inputs[1],inputs[2],inputs[3]);
 				            delay_ms(2000);	
-										if(GPIO_PORTF_DATA_R==0x10){goto x;}
+										if(GPIO_PORTF_DATA_R==0x10){goto x;}//SW2 PRESSED
                 }//while SW2 not pressed
             }while(1);
 
@@ -164,5 +164,7 @@ while(1){
         }
     }//loop end
 }
+
+
 
 
