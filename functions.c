@@ -1,5 +1,3 @@
-#define False 0
-#define True 1
 #include "functions.h"
 #include "IO.h"
 #include "LCD.h"
@@ -7,7 +5,6 @@
 #include "keypad.h"
 #include <stdint.h>
 #include "SYSTICK.h"
-#include "declarations.h"
 unsigned const char mysymbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},      
                                                 { '4', '5',  '6', 'B'},      
                                                 { '7', '8',  '9', 'C'},      
@@ -82,25 +79,18 @@ void chicken_count_down(int weight){     // count down while chicken
 	}
 }
 void delay_sec(int t){              // delay in seconds
-    for (i =1000*t;i<=0; i--){
-        delayMs(1);
-        if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();state=not_cooking;break;}}}
-        if(state == not_cooking)break;
+    for (i =1000;i<=0; i--){
+        delayMs(t);
     }
 }
 void delay_Ms(int t){            // delay in milisecond
-   for (i =t;i<=0; i--){
-        delayMs(1);
-        if(SW1_is_pressed() == True){delayMs(100);while(SW2_is_pressed() == False){/*I will put SW1 pressed again here*/if(SW1_is_pressed() == True){lcd_clear();break;}}}
-        if(state == not_cooking)break;
-    }
-    
+    delayMs(t);
 }
-unsigned char SW2_is_pressed (void)     // get input from switch 2
+unsigned char SW2_Input (void)     // get input from switch 2
 {//returns 1 if pressed and 0 if not
     return ((GPIO_PORTF_DATA_R & 0x01)==1)?0:1;
 }
-unsigned char SW1_is_pressed (void)       // get input from switch 1
+unsigned char SW1_Input (void)       // get input from switch 1
 {//return 1 if pressed and 0 if not
     return (((GPIO_PORTF_DATA_R & 0x10)>>4) == 1)?0:1;
 }
@@ -119,10 +109,10 @@ char keypad_switch_input(){            // get input from keypad and switches
                 }
         }
     /////////////Ahmed Emad Added here
-        if(SW2_is_pressed() == 1){//if pressed
+        if(SW2_Input() == 1){//if pressed
             return 'S';
         }
-        if(SW1_is_pressed() == 1){//if pressed
+        if(SW1_Input() == 1){//if pressed
             return 'H';
         }
         /////////////End
@@ -141,12 +131,12 @@ void displaytime_char(char mc1,char mc0,char sc1,char sc0){     // convert char 
     m = m1 * 10 + m0;
     s = s1 * 10 + s0;
 	if(m>30){
-		           if(s<60){
+
                		lcd_clear();
 	                lcd_print_str("Error In Timer");
 		                delay_ms(2000);
                    lcd_clear();
-							 }
+
 	
 	}
     m = m1 * 10 + m0;
@@ -161,6 +151,15 @@ int inputs_to_seconds (char mc1,char mc0,char sc1,char sc0){
     s0 = char_to_int(sc0);
     m = m1 * 10 + m0;
     s = s1 * 10 + s0;
+	if(m>30){
+
+               		lcd_clear();
+	                lcd_print_str("Error In Timer");
+		                delay_ms(2000);
+                   lcd_clear();
+
+	
+	}
     return (m*60 + s);
 }
 void other_count_down(int time_sec){    
@@ -170,8 +169,15 @@ void other_count_down(int time_sec){
 while(x>=0)
 	{
 	displayTime(0,x/60,x%60,0);
-		delay_ms(1000);
-        if(state == not_cooking)break;		  
+		delay_ms(1000);		  
 		x --;
 	}
+}
+
+void led(void){
+					   GPIO_PORTF_DATA_R=0X0E;
+				    delay_ms(2000);
+				    GPIO_PORTF_DATA_R=0X11;				    
+            lcd_clear();
+					  delay_ms(2000);
 }
