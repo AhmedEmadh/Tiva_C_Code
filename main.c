@@ -22,9 +22,11 @@ int main() {
     int time_seconds_other;
     char inputs[] = {'0','0','0','0'};
     char temp [] = {'0','0','0','0'};
-    edge_counter_init();//use for interrupt
+		edge_counter_init();
+		SW_PORTE(); //sw extra
+		 sound(); //for end of any case
     //initialization for board
-    initialization();
+    initialization();//all init
     while(1){ //loop
         switch (state)
         {
@@ -37,8 +39,8 @@ int main() {
             if(input == 'D' ) state = other;
         break;
         case popcorn:
-            lcd_print_str("popcorn");
-            delay_ms(2000);
+            lcd_print_str("popcorn");//print sting popcorn
+            delay_ms(2000);//delay for 2 s
 				while(1){
 					  lcd_clear();
             lcd_print_str("please press sw2");
@@ -51,7 +53,10 @@ int main() {
             lcd_print_str("End popcorn");
             delay_ms(2000);
 						led();
-            state = not_cooking;
+						GPIO_PORTD_DATA_R|=0X01;
+                delay_ms(2000);
+						GPIO_PORTD_DATA_R|=0X00;
+						state = not_cooking;
         break;
         case beef:
             lcd_print_str("Beef weight?");
@@ -75,6 +80,9 @@ while(1){
                 lcd_print_str("End Beef weight");
                 delay_ms(2000);
                 lcd_clear();
+						GPIO_PORTD_DATA_R|=0X01;
+                delay_ms(2000);
+						GPIO_PORTD_DATA_R|=0X00;
 		     				led();
                 state = not_cooking;
             }
@@ -106,6 +114,9 @@ while(1){
             delay_ms(2000);
             lcd_clear();
 						led();
+						GPIO_PORTD_DATA_R|=0X01;
+                delay_ms(2000);
+						GPIO_PORTD_DATA_R|=0X00;
             state = not_cooking;
             }
             else
@@ -132,7 +143,7 @@ while(1){
                     temp[0] = inputs[1];//temp here is ready to be cloned by input
                     for(i=0;i<=3;i++){inputs[i] = temp[i];}//put inputs[] = temp[] (cloning)
                     displaytime_char(inputs[0],inputs[1],inputs[2],inputs[3]);
-				            delay_ms(2000);	
+				            delay_ms(5000);	
 										if(GPIO_PORTF_DATA_R==0x10){goto x;}//SW2 PRESSED
                 }//while SW2 not pressed
             }while(1);
