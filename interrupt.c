@@ -1,4 +1,4 @@
-#include "D:\EE319Kware\InputOutput_4C123\yahrab\Tiva_C_Code\tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 #include "functions.h"
 #include "stdint.h"
 #include "interrupt.h"
