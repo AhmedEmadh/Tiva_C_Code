@@ -181,3 +181,15 @@ void led(void){
             lcd_clear();
 					  delay_ms(2000);
 }
+ void sound(void)
+ {
+   SYSCTL_RCGCGPIO_R |= 0x08;            //enable clc for port D
+  while ((SYSCTL_RCGCGPIO_R&0x08)==0){};
+    GPIO_PORTD_LOCK_R=0X4C4F434B;
+		GPIO_PORTD_PUR_R|=0X01;
+    GPIO_PORTD_CR_R|=0XFF;
+		GPIO_PORTD_DIR_R|=0X0E;
+    GPIO_PORTD_DEN_R |=0X1F;	
+
+	    
+ }
