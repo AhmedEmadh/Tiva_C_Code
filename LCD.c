@@ -7,6 +7,7 @@
 *             control a 16x2 LCD.
 *
 */
+int x=0;
 void LCD_Init(void)
 {
 // LCD ports' Initialization:
@@ -172,14 +173,18 @@ void displayTime(int h,int m,int s,int ss)
   LCD_setcursorRowCol(0, 7);
   LCD_data(':');
   LCD_setcursorRowCol(0, 8);
+	if(s<10){
+		  LCD_setcursorRowCol(0, 8);
+		LCD_printInt(x);
+	  LCD_setcursorRowCol(0, 9);  
+		  LCD_printInt(s);
+	}
   LCD_printInt(s);
   LCD_setcursorRowCol(0, 10);
   LCD_data(':');
   LCD_setcursorRowCol(0, 11);
   LCD_printInt(ss);
 }
-
-
 void loading(void)
 {
 	int i = 9;
