@@ -55,7 +55,7 @@ int main() {
 		led(); // blink the LEDs
 		GPIO_PORTD_DATA_R|=0X01;//sound on
                 delay_ms(2000);//delay
-		GPIO_PORTD_DATA_R|=0X00;//sound
+		GPIO_PORTD_DATA_R|=0X00;//sound off
 		state = not_cooking;
         break;
         case beef:

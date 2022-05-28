@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "stdint.h": "c",
-        "declarations.h": "c"
+        "declarations.h": "c",
+        "keypad.h": "c",
+        "led.h": "c",
+        "lcd.h": "c",
+        "functions.h": "c"
     }
 }

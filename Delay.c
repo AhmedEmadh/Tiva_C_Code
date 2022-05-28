@@ -7,14 +7,7 @@ for(i = 0 ; i < time; i++)
 }
  
 
-/**
-*  @detailed   This function delays the code by pooling on the micro controller 
-*              for a specific period of time measured upon the fact that the controller
-*              is running by speed 16MHZ.
-*              Calculating the no cycles needed from the microcontroller to wait no of Micro seconds.
-*              
-*  @param     time   desired waiting period in MicroSeconds.
-*/
+
 void delay_us(int time)
 {
 int i, j;

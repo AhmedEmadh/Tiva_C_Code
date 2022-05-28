@@ -15,11 +15,7 @@ unsigned const char symbol[padRows][padCols] = {{ '1', '2',  '3', 'A'},
                                                 { '7', '8',  '9', 'C'},      
                                                 { '*', '0',  '#', 'D'}}; 
 
-/**
-*  @detailed  This function initialize portb to be ready for use upon the needed features. 
-*
-*  @param     All function registers are defined in TM4C123GH6PM.H file
-*/
+
 void keypad_Init(void)
 {
 	// I used port c, D raw as input cols as out put 
@@ -34,12 +30,7 @@ void keypad_Init(void)
   GPIO_PORTE_DEN_R |= 0x1E;             //digital enable pins in port E
 }
 
-/**
-*  @detailed  This function returns the value of a key have been pressed at the moment the function had been called. 
-*             It  makes a 2 loops one to find the column which contains the button 
-*             had been pressd and another loop to determine the row of that button. 
-*             Having these data the we could determine a unique value for each button.
-*/
+
 char keypad_getkey(void)
 {
 	int i=0,j=0;

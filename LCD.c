@@ -2,11 +2,7 @@
 #include "LCD.h"
 #include "Delay.h"
 
-/**
-*  @detailed  This function initialize Port A & B to
-*             control a 16x2 LCD.
-*
-*/
+
 int x=0;
 void LCD_Init(void)
 {
@@ -34,15 +30,7 @@ LCD_command(DISPLAY_ON_CURSOR_ON);
 }
 
 
-/**
-*  @detailed  This function, First allow data pins of the LCD to accept command
-*                            then it send this command.
-*                            Previously calculated delay periods are used to wait
-*                            untill a specific action had been written to the LCD successfully.
-*
-*  @param     command   varible contains the command to be sent.
-*  @param               All used register names are predefined in the TM4C123GH6PM file.
-*/
+
 void LCD_command(unsigned int command)
 {
   GPIO_PORTA_DATA_R = 0x20;               //set RS to 1 to enable Command Register and RW to low to write to the LCD
@@ -57,15 +45,7 @@ void LCD_command(unsigned int command)
 }
 
 
-/**
-*  @detailed  This function, First allow data pins of the LCD to accept data
-*                            then it send this data.
-*                            Previously calculated delay periods are used to wait
-*                            untill a specific action had been written to the LCD successfully.
-*
-*  @param     data      varible contains the data to be sent.
-*  @param               All used register names are predefined in the TM4C123GH6PM file.
-*/
+
 void LCD_data(unsigned char data)
 { 
   GPIO_PORTA_DATA_R = 0x20;               //set RS to 1 to enable Data Register and RW to low to write to the LCD
