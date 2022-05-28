@@ -57,15 +57,7 @@ void LCD_command(unsigned int command)
 }
 
 
-/**
-*  @detailed  This function, First allow data pins of the LCD to accept data
-*                            then it send this data.
-*                            Previously calculated delay periods are used to wait
-*                            untill a specific action had been written to the LCD successfully.
-*
-*  @param     data      varible contains the data to be sent.
-*  @param               All used register names are predefined in the TM4C123GH6PM file.
-*/
+
 void LCD_data(unsigned char data)
 { 
   GPIO_PORTA_DATA_R = 0x20;               //set RS to 1 to enable Data Register and RW to low to write to the LCD
